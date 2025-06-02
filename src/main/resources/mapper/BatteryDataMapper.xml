@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bhy.collectionDemo.mapper.BatteryDataMapper">
+  <resultMap id="BaseResultMap" type="org.bhy.collectionDemo.pojo.BatteryData">
+    <id column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="cluster_id" jdbcType="INTEGER" property="clusterId" />
+    <result column="temperature" jdbcType="DOUBLE" property="temperature" />
+    <result column="voltage" jdbcType="DOUBLE" property="voltage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    group_id, cluster_id, temperature, voltage
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from battery_data
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from battery_data
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.bhy.collectionDemo.pojo.BatteryData">
+    insert into battery_data (group_id, cluster_id, temperature, 
+      voltage)
+    values (#{groupId,jdbcType=INTEGER}, #{clusterId,jdbcType=INTEGER}, #{temperature,jdbcType=DOUBLE}, 
+      #{voltage,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="org.bhy.collectionDemo.pojo.BatteryData">
+    insert into battery_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="clusterId != null">
+        cluster_id,
+      </if>
+      <if test="temperature != null">
+        temperature,
+      </if>
+      <if test="voltage != null">
+        voltage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="clusterId != null">
+        #{clusterId,jdbcType=INTEGER},
+      </if>
+      <if test="temperature != null">
+        #{temperature,jdbcType=DOUBLE},
+      </if>
+      <if test="voltage != null">
+        #{voltage,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.bhy.collectionDemo.pojo.BatteryData">
+    update battery_data
+    <set>
+      <if test="clusterId != null">
+        cluster_id = #{clusterId,jdbcType=INTEGER},
+      </if>
+      <if test="temperature != null">
+        temperature = #{temperature,jdbcType=DOUBLE},
+      </if>
+      <if test="voltage != null">
+        voltage = #{voltage,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.bhy.collectionDemo.pojo.BatteryData">
+    update battery_data
+    set cluster_id = #{clusterId,jdbcType=INTEGER},
+      temperature = #{temperature,jdbcType=DOUBLE},
+      voltage = #{voltage,jdbcType=DOUBLE}
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </update>
+</mapper>

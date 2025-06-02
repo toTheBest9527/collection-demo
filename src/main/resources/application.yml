@@ -1,0 +1,10 @@
+#主配置文件
+spring:
+  config:
+    import:
+      - classpath:rabbit-config.yml
+      - classpath:battery-group-ip.yml
+      - classpath:mybatis-config.yml
+logging:
+  level:
+    root: INFO

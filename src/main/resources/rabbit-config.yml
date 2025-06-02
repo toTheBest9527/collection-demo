@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    host: 8.153.64.72
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /collection_test
+    listener:
+      simple:
+        concurrency: 8
+        max-concurrency: 8
