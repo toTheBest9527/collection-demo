@@ -1,9 +1,6 @@
 package org.bhy.collectionDemo.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
@@ -52,7 +49,6 @@ public class RabbitMQConfig {
             if (queueName != null && routingKey != null) {
                 // 声明队列，队列持久化，掉服务不消失
                 Queue queue = new Queue(queueName, true);
-
                 // 绑定队列到交换机，并指定精确路由（routing key）
                 Binding binding = BindingBuilder.bind(queue)
                         .to(batteryExchange())
@@ -65,7 +61,7 @@ public class RabbitMQConfig {
         return bindings;  // 返回所有绑定的列表
     }
 
-    // 通过连接工厂创建 RabbitTemplate
+    // 通过连接工厂创建 RabbitTemplate,这块可以不要有
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         return new RabbitTemplate(connectionFactory);

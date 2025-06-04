@@ -41,7 +41,7 @@ public class BatteryDataConsumer {
             "battery_group_queue_6",
             "battery_group_queue_7",
             "battery_group_queue_8"
-    })
+    },ackMode = "AUTO")
     public void commonBatteryDataConsumer(Message message) {
         //获取消息体
         String messageBody = new String(message.getBody());

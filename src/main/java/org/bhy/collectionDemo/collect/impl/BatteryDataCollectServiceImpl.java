@@ -94,8 +94,7 @@ public class BatteryDataCollectServiceImpl implements BatteryDataCollectService 
             return 3; // 属于簇 3
         } else if (address >= 301 && address <= 400) {
             return 4; // 属于簇 4
-        } else {
-            return -1; // 无效地址
         }
+            return -1; // 无效地址
     }
 }
