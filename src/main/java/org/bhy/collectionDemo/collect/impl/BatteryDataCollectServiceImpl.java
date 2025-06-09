@@ -86,15 +86,14 @@ public class BatteryDataCollectServiceImpl implements BatteryDataCollectService 
 
     @Override
     public int calculateClusterIdByRegisterAddress(int address) {
-        if (address >= 1 && address <= 100) {
+        if (address >= 1 && address <= 100)
             return 1; // 属于簇 1
-        } else if (address >= 101 && address <= 200) {
+        if (address >= 101 && address <= 200)
             return 2; // 属于簇 2
-        } else if (address >= 201 && address <= 300) {
+        if (address >= 201 && address <= 300)
             return 3; // 属于簇 3
-        } else if (address >= 301 && address <= 400) {
+        if (address >= 301 && address <= 400)
             return 4; // 属于簇 4
-        }
-            return -1; // 无效地址
+        return -1; // 无效地址
     }
 }
